@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, json
 from flask_login import login_user , logout_user , current_user , login_required
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
-from forms import ContactForm, SignupForm
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -58,6 +57,7 @@ def showSignUp():
     return render_template('signup.html')
 
 @app.route('/signUp', methods=['GET', 'POST'])
+'''
 def signup():
     form = SignupForm()
 
@@ -69,3 +69,5 @@ def signup():
 
     elif request.method == 'GET':
         return render_template('signup.html', form=form)
+
+'''
