@@ -40,7 +40,8 @@ class User(db.Model):
         self.registered_on = datetime.utcnow()
 
 @app.route('/')
-def hello_world():
+@app.route('/main')
+def main():
     return render_template("main.html")
 
 @app.route('/showSignUp')
