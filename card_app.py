@@ -26,7 +26,7 @@ class Card(db.Model):
     pub_date = db.Column(db.DateTime)
 
 class User(db.Model);
-    __tablename = "users"
+    __tablename__ = "users"
     id = db.Column('user_id', db.Integer, primary_key=True)
     username = db.Column('username', db.String(20), unique=True, index=True)
     password = db.Column('password', db.String(10))
