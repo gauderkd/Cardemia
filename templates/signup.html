@@ -12,27 +12,6 @@
 
       <script href="../static/js/jquery-3.2.1.min.js"></script>
 
-      <script>
-
-          $(function() {
-              $('#btnSignUp').click(function() {
-                  $.ajax({
-                      url: '/signUp',
-                      data: $('form').serialize(),
-                      type: 'POST',
-                      success: function(response) {
-                          console.log(response);
-                      },
-                      error: function(error) {
-                          console.log(error);
-                      }
-                  });
-              });
-          });
-
-      </script>
-
-
   </head>
 
   <body>
