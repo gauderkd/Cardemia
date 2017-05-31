@@ -1,6 +1,6 @@
 from flask_wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, validators, ValidationError, PasswordField
-from card_app import db, User
+from card_app import User
 
 
 class SignupForm(Form):
