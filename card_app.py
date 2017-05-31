@@ -43,3 +43,7 @@ class User(db.Model):
 def hello_world():
     return render_template("main.html")
 
+@app.route('/showSignUp')
+def showSignUp():
+    return render_template('signup.html')
+
