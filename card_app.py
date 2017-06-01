@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, flash
 # from flask_login import login_user , logout_user , current_user , login_required
 from flask_sqlalchemy import SQLAlchemy
-from flask_mail import Mail, Message
 from werkzeug import generate_password_hash, check_password_hash
 from forms import ContactForm
 
@@ -92,13 +91,7 @@ def contact():
             flash('All fields are required.')
             return render_template('contact.html', form=form)
         else:
-            msg.body = """
-                  From: %s <%s>
-                  %s
-                  """ % (form.name.data, form.email.data, form.message.data)
-            mail.send(msg)
-
-            return 'Form posted.'
+            return 'Sorry, not functional at this time'
 
         return
     elif request.method == 'GET':
