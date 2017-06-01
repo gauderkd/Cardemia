@@ -7,20 +7,11 @@ from forms import ContactForm
 # in essence, this is a routes .py
 
 # Initialize Flask app
-mail = Mail()
-
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
 app.secret_key = 'key to the heart'
 
-app.config["MAIL_SERVER"] = "smtp.mailgun.org"
-app.config["MAIL_PORT"] = 587
-app.config["MAIL_USE_SSL"] = True
-app.config["MAIL_USERNAME"] = 'dragnerz@cardadmin.fdraconis.com'
-app.config["MAIL_PASSWORD"] = 'throwaway123'
-
-mail.init_app(app)
 
 # Connect to database 'carddb'
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
