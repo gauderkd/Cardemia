@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash
 # from flask_login import login_user , logout_user , current_user , login_required
 from flask_sqlalchemy import SQLAlchemy
-from flask_mail import Message, Mail
+from flask.ext.mail import Message, Mail
 from werkzeug import generate_password_hash, check_password_hash
 from forms import ContactForm
 
