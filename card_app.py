@@ -55,15 +55,15 @@ def main():
     return render_template("main.html")
 
 @app.route('/cards')
-def showcards():
+def cards():
     return render_template("cards.html")
 
 @app.route('/signin')
-def showsignin():
+def signin():
     return render_template("signin.html")
 
 @app.route('/showSignUp')
-def showsignup():
+def signup():
     return render_template('signup.html')
 
 '''
