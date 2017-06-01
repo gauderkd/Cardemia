@@ -1,16 +1,27 @@
 from flask import Flask, render_template, request, flash
 # from flask_login import login_user , logout_user , current_user , login_required
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Message, Mail
 from werkzeug import generate_password_hash, check_password_hash
 from forms import ContactForm
 
 # in essence, this is a routes .py
 
 # Initialize Flask app
+mail = Mail()
+
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
 app.secret_key = 'key to the heart'
+
+app.config["MAIL_SERVER"] = "smtp.mailgun.org"
+app.config["MAIL_PORT"] = 587
+app.config["MAIL_USE_SSL"] = True
+app.config["MAIL_USERNAME"] = 'dragnerz@cardadmin.fdraconis.com'
+app.config["MAIL_PASSWORD"] = 'throwaway123'
+
+mail.init_app(app)
 
 # Connect to database 'carddb'
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
@@ -81,7 +92,13 @@ def contact():
             flash('All fields are required.')
             return render_template('contact.html', form=form)
         else:
-            return 'Posted!'
+            msg.body = """
+                  From: %s <%s>
+                  %s
+                  """ % (form.name.data, form.email.data, form.message.data)
+            mail.send(msg)
+
+            return 'Form posted.'
 
         return
     elif request.method == 'GET':
