@@ -1,5 +1,6 @@
 from flask_wtf import Form
 from wtforms import Form, StringField, TextAreaField, SubmitField, validators, ValidationError
+from card_app import db, User
 
 
 class ContactForm(Form):
