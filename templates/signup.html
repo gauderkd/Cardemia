@@ -21,7 +21,7 @@
     <div class="flash">{{ message }}</div>
   {% endfor %}
 
-  <form class="form-signin" action="{{ url_for('signup2') }}" method=post>
+  <form class="form-signin" action="{{ url_for('signup') }}" method=post>
     {{ form.hidden_tag }}
 
     {{ form.username.label }}
