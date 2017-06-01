@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    $('.nav-pills').children().removeClass('active');
     $('#signUpPill').addClass('active');
 
     $('#btnSignUp').click(function() {

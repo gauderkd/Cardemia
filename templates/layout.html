@@ -7,7 +7,7 @@
     <!-- Dependencies -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="{{  url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
 
 
 </head>
@@ -16,13 +16,13 @@
         <div class="header">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" id="cardsPill"><a href="#">Cards</a>
+                    <li role="presentation" id="cardsPill"><a href="{{ url_for('cards') }}">Cards</a>
                     </li>
-                    <li role="presentation" id="homePill"><a href="#">Home</a>
+                    <li role="presentation" id="homePill"><a href="{{ url_for('main') }}">Home</a>
                     </li>
-                    <li role="presentation" id="signInPill"><a href="#">Sign In</a>
+                    <li role="presentation" id="signInPill"><a href="{{ url_for('signin') }}">Sign In</a>
                     </li>
-                    <li role="presentation" id="signUpPill"><a href="showSignUp">Sign Up</a>
+                    <li role="presentation" id="signUpPill"><a href="{{ url_for('signup') }}">Sign Up</a>
                     </li>
                 </ul>
             </nav>

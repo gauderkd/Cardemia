@@ -3,6 +3,8 @@ from flask_login import login_user , logout_user , current_user , login_required
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
 
+# in essence, this is a routes .py
+
 # Initialize Flask app
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -52,8 +54,16 @@ class User(db.Model):
 def main():
     return render_template("main.html")
 
+@app.route('/cards')
+def showcards():
+    return render_template("cards.html")
+
+@app.route('/signin')
+def showsignin():
+    return render_template("signin.html")
+
 @app.route('/showSignUp')
-def showSignUp():
+def showsignup():
     return render_template('signup.html')
 
 '''
