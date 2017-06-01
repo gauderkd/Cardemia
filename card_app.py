@@ -10,6 +10,8 @@ from forms import ContactForm
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+app.secret_key = 'key to the heart'
+
 # Connect to database 'carddb'
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
     username="dragnerz",
