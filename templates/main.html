@@ -1,35 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Cardemia</title>
-
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-
-
-
-</head>
-<body>
-
-    <div class="container-fluid">
-        <div class="header">
-            <nav>
-                <ul class="nav nav-pills pull-right">
-                    <li role="presentation"><a href="#">Cards</a>
-                    </li>
-                    <li role="presentation" class="active"><a href="#">Home</a>
-                    </li>
-                    <li role="presentation"><a href="#">Sign In</a>
-                    </li>
-                    <li role="presentation"><a href="showSignUp">Sign Up</a>
-                    </li>
-                </ul>
-            </nav>
-            <h3 class="text-muted">Cardemia</h3>
-        </div>
-
+{%  extends "layout.html" %}
+{%  block content %}
         <div class="page-header text-center">
             <h1>Cardemia</h1>
             <p class="lead">A Cue-Card based Research Notes App</p>
@@ -54,11 +24,4 @@
                 <p>Organize cards into projects to help lay out the logic of your research!</p>
             </div>
         </div>
-
-        <footer class="footer">
-            <a href="https://github.com/gauderkd/cardemia"><p>&copy; Kyle Gauder 2017</p></a>
-        </footer>
-
-    </div>
-</body>
-</html>
+{% endblock %}
