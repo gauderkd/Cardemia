@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, session
 from forms import ContactForm, SignupForm
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
@@ -73,7 +73,13 @@ def signup():
         if form.validate() == False:
             return render_template('signup.html', form=form)
         else:
-            return "[1] Create a new user [2] sign in the user [3] redirect to the user's profile"
+            newuser = User(form.username.data, form.password.data, form.email.data)
+            db.session.add(newuser)
+            db.session.commit()
+
+            session['email'] = newuser.email
+
+            return 'Signed up!'
 
     elif request.method == 'GET':
         return render_template('signup.html', form=form)
