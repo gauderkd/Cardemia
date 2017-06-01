@@ -65,9 +65,18 @@ def signin():
     return render_template("signin.html")
 
 
-@app.route('/showSignUp')
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    return render_template('signup.html')
+    form = SignupForm()
+
+    if request.method == 'POST':
+        if form.validate() == False:
+            return render_template('signup.html', form=form)
+        else:
+            return "[1] Create a new user [2] sign in the user [3] redirect to the user's profile"
+
+    elif request.method == 'GET':
+        return render_template('signup.html', form=form)
 
 
 @app.route('/contact', methods=['GET', 'POST'])
@@ -86,15 +95,4 @@ def contact():
     # request determines if current http method is get or post
 
 
-@app.route('/signup', methods=['GET', 'POST'])
-def signup2():
-    form = SignupForm()
 
-    if request.method == 'POST':
-        if form.validate() == False:
-            return render_template('signup2.html', form=form)
-        else:
-            return "[1] Create a new user [2] sign in the user [3] redirect to the user's profile"
-
-    elif request.method == 'GET':
-        return render_template('signup2.html', form=form)
