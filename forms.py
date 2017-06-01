@@ -4,8 +4,8 @@ from wtforms import Form, StringField, TextAreaField, SubmitField, validators, V
 
 class ContactForm(Form):
     # Basically, this is instead of putting input forms in HTML
-    username = StringField("Username",  [validators.Required()])
-    email = StringField("Email",  [validators.Required(), validators.Email()])
-    subject = StringField("Subject",  [validators.Required()])
-    message = TextAreaField("Message",  [validators.Required()])
+    name = StringField("name",  [validators.Required('Please enter your name.')])
+    email = StringField("Email",  [validators.Required('Please enter your email address'), validators.Email('Please enter your email address')])
+    subject = StringField("Subject",  [validators.Required('Please enter a subject')])
+    message = TextAreaField("Message",  [validators.Required('Please enter a message')])
     submit = SubmitField("Send")
