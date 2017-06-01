@@ -77,7 +77,13 @@ def signup():
 def contact():
     form = ContactForm()
     if request.method == 'POST':
-        return 'Form posted.'
+        if form.validate() == False:
+            flash('All fields are required.')
+            return render_template('contact.html', form=form)
+        else:
+            return 'Posted!'
+
+        return
     elif request.method == 'GET':
         return render_template('contact.html', form=form)
     # request determines if current http method is get or post
