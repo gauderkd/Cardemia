@@ -1,0 +1,22 @@
+{%  extends "layout.html" %}
+{%  block content %}
+    <h2>Contact</h2>
+    <form action="{{ url_for('contact') }}" method=post>
+    {{  form.hidden_tag() }}
+
+    {{ form.name.label }}
+    {{ form.name(class_='form-control') }}
+
+    {{ form.email.label }}
+    {{ form.email(class_='form-control') }}
+
+    {{ form.subject.label }}
+    {{ form.subject(class_='form-control') }}
+
+    {{ form.message.label }}
+    {{ form.message(class_='form-control') }}
+
+    {{ form.submit }}
+
+    </form>
+{% endblock %}

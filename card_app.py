@@ -1,13 +1,16 @@
-from flask import Flask, render_template, request, json
-from flask_login import login_user , logout_user , current_user , login_required
+from flask import Flask, render_template, request, flash
+# from flask_login import login_user , logout_user , current_user , login_required
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
+from forms import ContactForm
 
 # in essence, this is a routes .py
 
 # Initialize Flask app
 app = Flask(__name__)
 app.config["DEBUG"] = True
+
+app.secret_key = 'key to the heart'
 
 # Connect to database 'carddb'
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
@@ -54,17 +57,31 @@ class User(db.Model):
 def main():
     return render_template("main.html")
 
+
 @app.route('/cards')
 def cards():
     return render_template("cards.html")
+
 
 @app.route('/signin')
 def signin():
     return render_template("signin.html")
 
+
 @app.route('/showSignUp')
 def signup():
     return render_template('signup.html')
+
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    form = ContactForm()
+    if request.method == 'POST':
+        return 'Form posted.'
+    elif request.method == 'GET':
+        return render_template('contact.html', form=form)
+    # request determines if current http method is get or post
+
 
 '''
 @app.route('/signUp', methods=['GET', 'POST'])
