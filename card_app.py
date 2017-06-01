@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash
-from forms import ContactForm
+from forms import ContactForm, SignupForm
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
 
