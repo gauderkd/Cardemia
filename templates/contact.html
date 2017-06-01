@@ -1,39 +1,42 @@
 {%  extends "layout.html" %}
 {% block content %}
-    <h2>Contact</h2>
+    <div class="container">
 
-    {% for message in form.name.errors %}
-        <div class="flash">{{ message }}</div>
-    {% endfor %}
+        <h2>Contact</h2>
 
-    {% for message in form.email.errors %}
-        <div class="flash">{{ message }}</div>
-    {% endfor %}
+        {% for message in form.name.errors %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
 
-    {% for message in form.subject.errors %}
-        <div class="flash">{{ message }}</div>
-    {% endfor %}
+        {% for message in form.email.errors %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
 
-    {% for message in form.message.errors %}
-        <div class="flash">{{ message }}</div>
-    {% endfor %}
+        {% for message in form.subject.errors %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
 
-    <form action="{{ url_for('contact') }}" method=post>
-    {{ form.hidden_tag }}
+        {% for message in form.message.errors %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
 
-    {{ form.name.label }}
-    {{ form.name(class_='form-control') }}
+        <form action="{{ url_for('contact') }}" method=post>
+        {{ form.hidden_tag }}
 
-    {{ form.email.label }}
-    {{ form.email(class_='form-control') }}
+        {{ form.name.label }}
+        {{ form.name(class_='form-control') }}
 
-    {{ form.subject.label }}
-    {{ form.subject(class_='form-control') }}
+        {{ form.email.label }}
+        {{ form.email(class_='form-control') }}
 
-    {{ form.message.label }}
-    {{ form.message(class_='form-control') }}
+        {{ form.subject.label }}
+        {{ form.subject(class_='form-control') }}
 
-    {{ form.submit }}
+        {{ form.message.label }}
+        {{ form.message(class_='form-control') }}
 
-    </form>
+        {{ form.submit }}
+
+        </form>
+    </div>
 {% endblock %}
