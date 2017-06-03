@@ -27,8 +27,7 @@ class SignupForm(Form):
             return 'error_username'
         if user_mail is not None:
             return 'error_email'
-        else:
-            return True
+        return True
 
 
 class LoginForm(Form):
