@@ -21,3 +21,4 @@ class SignupForm(Form):
 class loginForm(Form):
     username = StringField('Username', [validators.Required("Please enter your username.")])
     password = PasswordField('Password', [validators.Required("Please enter your password.")])
+    submit = SubmitField("Sign In")

@@ -3,6 +3,14 @@
 
     <h1>Sign in</h1>
 
+    {% for message in form.username.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
+  {% for message in form.password.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
     <form class="form-signin" action="{{ url_for('signup') }}" method=post>
     {{ form.csrf_token }}
     {{ form.name }}
