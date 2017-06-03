@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-from flask.ext.bcrypt import generate_password_hash, check_password_hash
+from passlib.hash import argon2
 from datetime import datetime
 
 db = SQLAlchemy()
@@ -29,9 +29,9 @@ class Users(db.Model, UserMixin):
         self.registered_on = datetime.utcnow()
 
     def set_password(self, plaintext):
-        self.password = generate_password_hash(plaintext).decode("utf-8")
+        self.password = argon2.using(rounds=4).hash(plaintext)
 
     def check_password(self, plaintext):
-        if check_password_hash(self.password, plaintext):
+        if argon2.verify(plaintext, self.password):
             return True
         return False
