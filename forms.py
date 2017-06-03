@@ -17,8 +17,19 @@ class SignupForm(Form):
     password = PasswordField('Password', [validators.Required("Please enter a password.")])
     submit = SubmitField("Create account")
 
+    def validate(self):
+        if not Form.validate(self):
+            return False
 
-class loginForm(Form):
+        user = User.query.filter_by(email=self.email.data).first()
+        if user and user.check_password(self.password.data):
+            return True
+        else:
+            self.email.errors.append("Invalid e-mail or password")
+            return False
+
+
+class LoginForm(Form):
     username = StringField('Username', [validators.Required("Please enter your username.")])
     password = PasswordField('Password', [validators.Required("Please enter your password.")])
     submit = SubmitField("Sign In")
