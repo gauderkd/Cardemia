@@ -57,7 +57,7 @@ def signin():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = Users.query.filter_by(username=form.username.data).first_or_404()
+        user = Users.query.filter_by(username=form.username.data)
         if user:
             if user.check_password(form.password.data):
                 login_user(user, remember=True)
