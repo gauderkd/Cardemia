@@ -9,6 +9,7 @@
 {% block content %}
     <div class="jumbotron jumbotron-fluid">
           <h1>Sign up for Cards Today!</h1>
+
   {% for message in form.username.errors %}
     <div class="flash">{{ message }}</div>
   {% endfor %}

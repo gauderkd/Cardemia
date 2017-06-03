@@ -35,10 +35,7 @@ def cards():
 
 @app.route('/signin')
 def signin():
-    if db.session.query("1").from_statement("SELECT 1").all():
-        return 'It works.'
-    else:
-        return 'Something is broken.'
+    return render_template("signin.html")
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -47,15 +44,14 @@ def signup():
 
     if request.method == 'POST':
         if form.validate() == False:
-            return render_template('signup.html', form=form)
+            return print('form validate = false')
         else:
-            newuser = User(form.username.data, form.password.data, form.email.data)
+            newuser = User(form.username.data, form.email.data, form.password.data)
             db.session.add(newuser)
             db.session.commit()
 
             session['email'] = newuser.email
-
-            return redirect(url_for('profile'))
+            return print('form validate = true')
 
     elif request.method == 'GET':
         return render_template('signup.html', form=form)
