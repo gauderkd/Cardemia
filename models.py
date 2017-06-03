@@ -19,7 +19,7 @@ class Users(db.Model, UserMixin):
     __tablename__ = "users"
     id = db.Column('user_id', db.Integer, primary_key=True)
     username = db.Column('username', db.String(20), unique=True, index=True)
-    passhash = db.Column('password', db.String(16))
+    password = db.Column('password', db.String(16))
     email = db.Column('email', db.String(50), unique=True, index=True)
     registered_on = db.Column('registered_on', db.DateTime)
 
@@ -29,9 +29,9 @@ class Users(db.Model, UserMixin):
         self.email = email.lower()
         self.registered_on = datetime.utcnow()
 
-    def set_password(self, password):
-        self.passhash = generate_password_hash(password)
+    def set_password(self, plaintext):
+        self.password = generate_password_hash(plaintext)
 
-    def check_password(self, password):
-        if check_password_hash(self.passhash, password):
+    def check_password(self, plaintext):
+        if check_password_hash(self.password, plaintext):
             return True
