@@ -79,13 +79,20 @@ def signout():
 def signup():
     form = SignupForm()
 
-    if form.validate_on_submit() and (form.validate() is True):
-        newuser = Users(username=form.username.data, password=form.password.data, email=form.email.data)
-        db.session.add(newuser)
-        db.session.commit()
-        login_user(newuser)
+    if form.validate_on_submit():
+        if form.validate() is True:
+            newuser = Users(username=form.username.data, password=form.password.data, email=form.email.data)
+            db.session.add(newuser)
+            db.session.commit()
+            login_user(newuser)
 
-        return redirect(url_for('profile'))
+            return redirect(url_for('profile'))
+        elif form.validate() is 'error_username':
+            return 'username taken'
+        elif form.validate() is 'error email':
+            return 'email taken'
+        else:
+            return 'some other error'
 
     else:
         return render_template('signup.html', form=form)
