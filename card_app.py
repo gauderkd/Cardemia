@@ -51,27 +51,27 @@ def cards():
 
 @app.route('/signin', methods=["GET", "POST"])
 def signin():
+    if current_user.is_authenticated():
+        return 'You are already logged in'
+
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = Users.query.get(form.email.data)
+        user, authenticated = Users.authenticate(form.username.data, form.password.data)
         if user:
-            if user.check_passowrd(form.password.data):
-                user.authenticated = True
-                db.session.add(user)
-                db.session.commit()
+            if authenticated:
                 login_user(user, remember=True)
                 return redirect(url_for('profile'))
+            else:
+                return 'Invalid username or password'
+        else:
+            return 'username doesnt exist'
     return render_template("signin.html", form=form)
 
 
-@app.route('/signout')
+@app.route('/signout', methods=["POST"])
 @login_required
 def signout():
-    user = current_user
-    user.authenticated = False
-    db.session.add(user)
-    db.session.commit()
     logout_user()
     return redirect(url_for('main'))
 
