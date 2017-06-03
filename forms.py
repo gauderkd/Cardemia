@@ -23,12 +23,16 @@ class SignupForm(Form):
         if not Form.validate(self):
             return False
 
-        user = Users.query.filter_by(email=self.email.data).first()
-        if user and user.check_password(self.password.data):
-            return True
-        else:
-            self.email.errors.append("Invalid e-mail or password")
+        user_mail = User.query.filter_by(email=self.email.data.lower()).first()
+        user_name = User.query.filter_by(username=self.email.data.lower()).first()
+        if user_name:
+            self.email.errors.append("That username is already taken")
             return False
+        if user_mail:
+            self.email.errors.append("That email is already taken")
+            return False
+        else:
+            return True
 
 
 class LoginForm(Form):
