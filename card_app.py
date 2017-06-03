@@ -20,6 +20,7 @@ app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 from models import db, Users
+db.init_app(app)
 
 
 @app.route('/')
