@@ -90,12 +90,16 @@ def signup():
             login_user(newuser)
 
             return redirect(url_for('profile'))
+
         elif form.validate() is 'error_username':
-            raise flash('Username already taken')
+            flash('Username already taken')
+            return render_template('signup.html', form=form)
         elif form.validate() is 'error_email':
-            raise flash('email already taken')
+            flash('email already taken')
+            return render_template('signup.html', form=form)
         else:
-            raise flash('some other error occurred')
+            flash('some other error occurred')
+            return render_template('signup.html', form=form)
 
     else:
         return render_template('signup.html', form=form)
