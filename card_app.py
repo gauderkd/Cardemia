@@ -32,7 +32,6 @@ login_manager.login_view = "signin"
 @login_manager.user_loader
 def user_loader(user_id):
     """Given *user_id*, return the associated User object.
-
     :param unicode user_id: user_id (email) user to retrieve
     """
     return Users.query.get(user_id)
@@ -59,14 +58,12 @@ def signin():
     if form.validate_on_submit():
         user = Users.query.filter_by(username=form.username.data).first()
         if user is None:
-            flash('User doesnt exist!')
-            return render_template("signin.html", form=form)
+            return 'user doesnt exist'
         elif user and user.check_password(form.password.data):
             login_user(user, remember=True)
             return redirect(url_for('profile'))
         else:
-            flash('Password or username incorrect')
-            return render_template("signin.html", form=form)
+            return 'password incorrect'
 
     return render_template("signin.html", form=form)
 
@@ -82,29 +79,16 @@ def signout():
 def signup():
     form = SignupForm()
 
-    if form.validate_on_submit():
-        if form.validate() is True:
-            newuser = Users(username=form.username.data, password=form.password.data, email=form.email.data)
-            db.session.add(newuser)
-            db.session.commit()
-            login_user(newuser)
+    if form.validate_on_submit() and (form.validate() is True):
+        newuser = Users(username=form.username.data, password=form.password.data, email=form.email.data)
+        db.session.add(newuser)
+        db.session.commit()
+        login_user(newuser)
 
-            return redirect(url_for('profile'))
-
-        elif form.validate() is 'error_username':
-            flash('Username already taken')
-            return render_template('signup.html', form=form)
-        elif form.validate() is 'error_email':
-            flash('email already taken')
-            return render_template('signup.html', form=form)
-        else:
-            flash('some other error occurred')
-            return render_template('signup.html', form=form)
+        return redirect(url_for('profile'))
 
     else:
         return render_template('signup.html', form=form)
-
-
 
 
 @app.route('/profile')
