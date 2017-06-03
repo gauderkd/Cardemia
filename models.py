@@ -32,4 +32,5 @@ class Users(db.Model, UserMixin):
         self.passhash = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.passhash, password)
+        if check_password_hash(self.passhash, password):
+            return True
