@@ -13,7 +13,7 @@ class Card(db.Model):
     pub_date = db.Column(db.DateTime)
 
 
-class Users(db.Model):
+class Users(db.Model, UserMixin):
     __tablename__ = "users"
     id = db.Column('user_id', db.Integer, primary_key=True)
     username = db.Column('username', db.String(20), unique=True, index=True)
