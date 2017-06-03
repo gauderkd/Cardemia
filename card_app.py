@@ -26,9 +26,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy()
 
-db.create_all()
-
-
 class Card(db.Model):
     __tablename__ = 'cards'
     id = db.Column('card_id', db.Integer, primary_key=True)
@@ -59,6 +56,8 @@ class Users(db.Model, UserMixin):
             return True
         return False
 
+db.create_all()
+db.session.commit()
 
 
 
