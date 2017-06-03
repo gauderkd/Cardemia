@@ -9,17 +9,17 @@ db = SQLAlchemy()
 class Card(db.Model):
     __tablename__ = 'cards'
     id = db.Column('card_id', db.Integer, primary_key=True)
-    title = db.Column(db.String(60))
-    text = db.Column(db.String(500))
+    title = db.Column(db.String)
+    text = db.Column(db.String)
     pub_date = db.Column(db.DateTime)
 
 
 class Users(db.Model, UserMixin):
     __tablename__ = "users"
     id = db.Column('user_id', db.Integer, primary_key=True)
-    username = db.Column('username', db.String(20), unique=True, index=True)
-    password = db.Column('password', db.String(16))
-    email = db.Column('email', db.String(50), unique=True, index=True)
+    username = db.Column('username', db.String, unique=True, index=True)
+    password = db.Column('password', db.String)
+    email = db.Column('email', db.String, unique=True, index=True)
     registered_on = db.Column('registered_on', db.DateTime)
 
     def __init__(self, username, password, email):
