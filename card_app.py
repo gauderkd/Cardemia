@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, flash, session
-from forms import ContactForm, SignupForm
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
+
+from forms import ContactForm, SignupForm
+
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -62,7 +64,10 @@ def cards():
 
 @app.route('/signin')
 def signin():
-    return render_template("signin.html")
+    if db.session.query("1").from_statement("SELECT 1").all():
+        return 'It works.'
+    else:
+        return 'Something is broken.'
 
 
 @app.route('/signup', methods=['GET', 'POST'])
