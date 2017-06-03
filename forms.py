@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm as Form
-from wtforms import StringField, TextAreaField, SubmitField, validators, ValidationError, PasswordField, Required
+from wtforms import StringField, TextAreaField, SubmitField, validators, ValidationError, PasswordField
 
 class ContactForm(Form):
     # Basically, this is instead of putting input forms in HTML
@@ -19,5 +19,5 @@ class SignupForm(Form):
 
 
 class loginForm(Form):
-    username = StringField('Username', validators=[Required()])
-    password = PasswordField('Password', validators=[Required()])
+    username = StringField('Username', [validators.Required("Please enter your username.")])
+    password = PasswordField('Password', [validators.Required("Please enter your password.")])
