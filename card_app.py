@@ -45,7 +45,7 @@ def cards():
     return render_template("cards.html")
 
 
-@app.route('signin', methods=["GET", "POST"])
+@app.route('/signin', methods=["GET", "POST"])
 def signin():
     form = loginForm()
 
