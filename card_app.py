@@ -43,7 +43,7 @@ def signup():
 
     if request.method == 'POST':
         if form.validate() == False:
-            return form.errors
+            return 'form validate = false'
         else:
             newuser = Users(form.username.data, form.password.data, form.email.data)
             db.session.add(newuser)
