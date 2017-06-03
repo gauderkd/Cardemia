@@ -23,10 +23,10 @@ class SignupForm(Form):
         user_mail = Users.query.filter_by(email=self.email.data.lower()).first()
         user_name = Users.query.filter_by(username=self.username.data.lower()).first()
         if user_name:
-            self.email.errors.append("That username is already taken")
+            raise Form.ValidationError("That user is already taken")
             return False
         if user_mail:
-            self.email.errors.append("That email is already taken")
+            raise Form.ValidationError("That email is already taken")
             return False
         else:
             return True
