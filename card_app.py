@@ -42,15 +42,16 @@ def signup():
     form = SignupForm()
 
     if request.method == 'POST':
-        if form.validate() == False:
-            return 'form validate = false'
-        else:
-            newuser = Users(form.username.data, form.email.data, form.password.data)
+        if form.validate_on_submit():
+            newuser = Users(form.username.data, form.password.data, form.email.data)
             db.session.add(newuser)
             db.session.commit()
-
             session['email'] = newuser.email
             return 'form validate = true'
+        else:
+            return 'form validate = false'
+
+
 
     elif request.method == 'GET':
         return render_template('signup.html', form=form)

@@ -22,7 +22,7 @@ class Users(db.Model):
 
     def __init__(self, username, password, email):
         self.username = username
-        self.set_passwrd(password)
+        self.set_password(password)
         self.email = email.lower()
         self.registered_on = datetime.utcnow()
 
