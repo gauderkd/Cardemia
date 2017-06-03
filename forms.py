@@ -23,9 +23,9 @@ class SignupForm(Form):
     def validate(self):
         user_mail = Users.query.filter_by(email=self.email.data.lower()).first()
         user_name = Users.query.filter_by(username=self.username.data.lower()).first()
-        if user_name is None:
+        if user_name is not None:
             return 'error_username'
-        if user_mail is None:
+        if user_mail is not None:
             return 'error_email'
         else:
             return True
