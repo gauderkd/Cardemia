@@ -23,12 +23,10 @@ class SignupForm(Form):
     def validate(self):
         user_mail = Users.query.filter_by(email=self.email.data.lower()).first()
         user_name = Users.query.filter_by(username=self.username.data.lower()).first()
-        if user_name:
-            raise flash("That user is already taken")
-            return False
-        if user_mail:
-            raise flash("That email is already taken")
-            return False
+        if user_name is None:
+            return 'error_username'
+        if user_mail is None:
+            return 'error_email'
         else:
             return True
 
