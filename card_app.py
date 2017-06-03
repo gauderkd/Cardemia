@@ -55,7 +55,7 @@ def signin():
             login_user(user)
             return redirect(url_for('profile'))
         else:
-            return redirect(url_for('signin'))
+            return render_template("signin.html", form=form)
 
     return render_template("signin.html", form=form)
 
