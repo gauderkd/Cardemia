@@ -19,7 +19,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 
 from models import db, Users
-db.init_app(app)
 
 
 @app.route('/')
