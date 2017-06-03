@@ -29,7 +29,7 @@ class Users(db.Model, UserMixin):
         self.registered_on = datetime.utcnow()
 
     def set_password(self, plaintext):
-        self.password = generate_password_hash(plaintext)
+        self.password = generate_password_hash(plaintext).decode("utf-8")
 
     def check_password(self, plaintext):
         if check_password_hash(self.password, plaintext):
