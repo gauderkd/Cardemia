@@ -1,27 +1,31 @@
 {%  extends "layout.html" %}
 {%  block content %}
 
-    <h1>Sign in</h1>
+    <div class="container-fluid">
 
-    {% for message in form.username.errors %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
 
-  {% for message in form.password.errors %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
+        <h1>Sign in</h1>
 
-    <form class="form-signin" action="{{ url_for('signup') }}" method=post>
-    {{ form.csrf_token }}
-    {{ form.name }}
+        {% for message in form.username.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
 
-    {{ form.username.label }}
-    {{ form.username(class_='form-control') }}
+        {% for message in form.password.errors %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
 
-    {{ form.password.label }}
-    {{ form.password(class_='form-control') }}
+        <form class="form-signin" action="{{ url_for('signup') }}" method=post>
+        {{ form.csrf_token }}
+        {{ form.name }}
 
-    {{ form.submit }}
-  </form>
+        {{ form.username.label }}
+        {{ form.username(class_='form-control') }}
+
+        {{ form.password.label }}
+        {{ form.password(class_='form-control') }}
+
+        {{ form.submit }}
+        </form>
+        </div>
 
 {% endblock %}
