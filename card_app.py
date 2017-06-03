@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, flash, session, url_for, redirect
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from flask.ext.bcrypt import Bcrypt
+from flask_login import UserMixin
+from passlib.hash import argon2
 
 from forms import ContactForm, SignupForm, LoginForm
 
@@ -38,14 +40,6 @@ def user_loader(user_id):
     :param unicode user_id: user_id (email) user to retrieve
     """
     return Users.query.get(user_id)
-
-
-class Card(db.Model):
-    __tablename__ = 'cards'
-    id = db.Column('card_id', db.Integer, primary_key=True)
-    title = db.Column(db.String)
-    text = db.Column(db.String)
-    pub_date = db.Column(db.DateTime)
 
 
 class Users(db.Model, UserMixin):
