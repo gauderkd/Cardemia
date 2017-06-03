@@ -51,7 +51,7 @@ def cards():
 
 @app.route('/signin', methods=["GET", "POST"])
 def signin():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return 'You are already logged in'
 
     form = LoginForm()
