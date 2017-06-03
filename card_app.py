@@ -53,8 +53,7 @@ def signin():
         user = Users.query.filter_by(username=form.username.data).first_or_404()
         if user.check_passowrd(form.password.data):
             login_user(user)
-
-            return redirect(url_for('index'))
+            return redirect(url_for('profile'))
         else:
             return redirect(url_for('signin'))
 
@@ -65,7 +64,7 @@ def signin():
 def signout():
     logout_user()
 
-    return redirect(url_for('index'))
+    return redirect(url_for('signup'))
 
 
 @app.route('/signup', methods=['GET', 'POST'])

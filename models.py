@@ -17,7 +17,7 @@ class Users(db.Model):
     __tablename__ = "users"
     id = db.Column('user_id', db.Integer, primary_key=True)
     username = db.Column('username', db.String(20), unique=True, index=True)
-    password = db.Column('password', db.String(16))
+    passhash = db.Column('password', db.String(16))
     email = db.Column('email', db.String(50), unique=True, index=True)
     registered_on = db.Column('registered_on', db.DateTime)
 
@@ -28,7 +28,7 @@ class Users(db.Model):
         self.registered_on = datetime.utcnow()
 
     def set_password(self, password):
-        self.password = generate_password_hash(password)
+        self.passhash = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.password, password)
+        return check_password_hash(self.passhash, password)
