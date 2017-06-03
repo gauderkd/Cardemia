@@ -59,12 +59,14 @@ def signin():
     if form.validate_on_submit():
         user = Users.query.filter_by(username=form.username.data).first()
         if user is None:
-            return 'user doesnt exist'
+            flash('User doesnt exist!')
+            return render_template("signin.html", form=form)
         elif user and user.check_password(form.password.data):
             login_user(user, remember=True)
             return redirect(url_for('profile'))
         else:
-            return 'password incorrect'
+            flash('Password or username incorrect')
+            return render_template("signin.html", form=form)
 
     return render_template("signin.html", form=form)
 
