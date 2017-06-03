@@ -1,9 +1,6 @@
 from flask_wtf import FlaskForm as Form
 from wtforms import StringField, TextAreaField, SubmitField, validators, ValidationError, PasswordField, Required
 
-from models import db, Users
-
-
 class ContactForm(Form):
     # Basically, this is instead of putting input forms in HTML
     name = StringField("name",  [validators.Required('Please enter your name.')])
