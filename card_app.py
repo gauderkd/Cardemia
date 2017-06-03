@@ -58,11 +58,7 @@ def signin():
     form = LoginForm()
 
     if form.validate_on_submit():
-        try:
-            user = Users.get(form.username.data)
-        except:
-            user = None
-
+        user = Users.query.filter_by(username=form.username.data).first()
         if user and user.checkpassword(form.password.data):
             login_user(user, remember=True)
             return redirect(url_for('profile'))
