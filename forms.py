@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm as Form
+from flask import flash
 from wtforms import StringField, TextAreaField, SubmitField, validators, ValidationError, PasswordField
 
 from models import db, Users
@@ -23,10 +24,10 @@ class SignupForm(Form):
         user_mail = Users.query.filter_by(email=self.email.data.lower()).first()
         user_name = Users.query.filter_by(username=self.username.data.lower()).first()
         if user_name:
-            raise ValidationError("That user is already taken")
+            raise flash("That user is already taken")
             return False
         if user_mail:
-            raise ValidationError("That email is already taken")
+            raise flash("That email is already taken")
             return False
         else:
             return True
