@@ -57,15 +57,10 @@ def signin():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user, authenticated = Users.authenticate(form.username.data, form.password.data)
-        if user:
-            if authenticated:
-                login_user(user, remember=True)
-                return redirect(url_for('profile'))
-            else:
-                return 'Invalid username or password'
-        else:
-            return 'username doesnt exist'
+        user = Users.query.filter_by(username=form.username.data).first_or_404()
+        if user.check_password(form.password.data):
+            login_user(user, remember=True)
+            return redirect(url_for('profile'))
     return render_template("signin.html", form=form)
 
 
