@@ -61,6 +61,9 @@ def signin():
         if user.check_password(form.password.data):
             login_user(user, remember=True)
             return redirect(url_for('profile'))
+        else:
+            return 'check password failed'
+        return 'validate_submit_failed'
     return render_template("signin.html", form=form)
 
 
