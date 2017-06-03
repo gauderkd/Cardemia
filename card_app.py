@@ -44,14 +44,14 @@ def signup():
 
     if request.method == 'POST':
         if form.validate() == False:
-            return print('form validate = false')
+            return 'form validate = false'
         else:
             newuser = User(form.username.data, form.email.data, form.password.data)
             db.session.add(newuser)
             db.session.commit()
 
             session['email'] = newuser.email
-            return print('form validate = true')
+            return 'form validate = true'
 
     elif request.method == 'GET':
         return render_template('signup.html', form=form)
