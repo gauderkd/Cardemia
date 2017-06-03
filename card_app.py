@@ -69,7 +69,7 @@ def signin():
     return render_template("signin.html", form=form)
 
 
-@app.route('/signout', methods=["POST"])
+@app.route('/signout')
 @login_required
 def signout():
     logout_user()
