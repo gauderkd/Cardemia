@@ -1,15 +1,11 @@
 from flask import Flask, render_template, request, flash, session, url_for, redirect
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
-from flask.ext.bcrypt import Bcrypt
-from flask_login import UserMixin
-from passlib.hash import argon2
 
 from forms import ContactForm, SignupForm, LoginForm
 
 
 # Initialize Flask app
 app = Flask(__name__)
-bcrypt = Bcrypt(app)
 
 app.secret_key = 'key to the heart'
 
@@ -40,6 +36,7 @@ def user_loader(user_id):
     :param unicode user_id: user_id (email) user to retrieve
     """
     return Users.query.get(user_id)
+
 
 @app.route('/')
 @app.route('/main')
