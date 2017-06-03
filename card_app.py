@@ -1,12 +1,13 @@
 from flask import Flask, render_template, request, flash, session, url_for, redirect
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
-from sqlalchemy.sql import exists
+from flask.ext.bcrypt import Bcrypt
 
 from forms import ContactForm, SignupForm, LoginForm
 
 
 # Initialize Flask app
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 
 app.secret_key = 'key to the heart'
 
