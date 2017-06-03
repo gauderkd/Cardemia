@@ -57,11 +57,15 @@ def signin():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = Users.query.filter_by(username=form.username.data).first_or_404()
-        if user.check_password(form.password.data):
-
-            login_user(user, remember=True)
-        return redirect(url_for('profile'))
+        user, authenticated = Users.authenticate(form.username.data, form.password.data)
+        if user:
+            if authenticated:
+                login_user(user, remember=True)
+                return redirect(url_for('profile'))
+            else:
+                return 'Invalid username or password'
+        else:
+            return 'username doesnt exist'
     return render_template("signin.html", form=form)
 
 
@@ -70,14 +74,6 @@ def signin():
 def signout():
     logout_user()
     return redirect(url_for('main'))
-
-
-@app.route('/profile')
-def profile():
-    if current_user.is_authenticated:
-        return render_template('profile.html')
-    else:
-        return redirect(url_for('signin'))
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -96,6 +92,14 @@ def signup():
         return render_template('signup.html', form=form)
 
 
+@app.route('/profile')
+def profile():
+    if current_user.is_authenticated:
+        return render_template('profile.html')
+    else:
+        return redirect(url_for('signin'))
+
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     form = ContactForm()
@@ -110,6 +114,3 @@ def contact():
     elif request.method == 'GET':
         return render_template('contact.html', form=form)
     # request determines if current http method is get or post
-
-
-
