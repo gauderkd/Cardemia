@@ -58,6 +58,8 @@ def signin():
 
     if form.validate_on_submit():
         user = Users.query.filter_by(username=form.username.data).first_or_404()
+        flash(user)
+
         if user.check_password(form.password.data):
             login_user(user, remember=True)
             return redirect(url_for('profile'))
