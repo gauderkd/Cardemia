@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash, session, url_for, redirect
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
+from sqlalchemy.sql import exists
 
 from forms import ContactForm, SignupForm, LoginForm
 
@@ -58,18 +59,18 @@ def signin():
 
     if form.validate_on_submit():
         try:
-            user = Users.query.filter_by(username=form.username.data)
-            if user:
-                if user.check_password(form.password.data):
-                    login_user(user, remember=True)
-                    return redirect(url_for('profile'))
-                else:
-                    return 'check password failed'
-            else:
-                return 'user doesnt exist'
-
+            user = Users.get(form.username.data)
         except:
-            return 'user wasnt found in db'
+            user = None
+
+        if user and user.checkpassword(form.password.data):
+            login_user(user, remember=True)
+            return redirect(url_for('profile'))
+        elif user == None:
+            return 'user doesnt exist'
+        else:
+            return 'password incorrect'
+
     return render_template("signin.html", form=form)
 
 
