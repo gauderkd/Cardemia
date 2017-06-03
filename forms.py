@@ -1,6 +1,8 @@
 from flask_wtf import Form
 from wtforms import Form, StringField, TextAreaField, SubmitField, validators, ValidationError, PasswordField
 
+from models import db, User
+
 
 class ContactForm(Form):
     # Basically, this is instead of putting input forms in HTML

@@ -1,3 +1,10 @@
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug import generate_password_hash, check_password_hash
+
+db = SQLAlchemy()
+
+
+
 class Card(db.Model):
     __tablename__ = 'cards'
     id = db.Column('card_id', db.Integer, primary_key=True)
