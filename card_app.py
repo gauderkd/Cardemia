@@ -26,7 +26,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy()
 
-
+db.create_all()
 
 
 class Card(db.Model):
@@ -153,6 +153,3 @@ def contact():
     elif request.method == 'GET':
         return render_template('contact.html', form=form)
     # request determines if current http method is get or post
-
-if __name__ == '__main__':
-    app.run()
