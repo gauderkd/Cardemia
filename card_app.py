@@ -33,7 +33,6 @@ def load_user(userid):
     return Users.query.filter(Users.id == userid).first()
 
 
-
 @app.route('/')
 @app.route('/main')
 def main():
@@ -63,7 +62,7 @@ def signin():
 @app.route('/signout')
 def signout():
     logout_user()
-    return redirect(url_for('signup'))
+    return redirect(url_for('main'))
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -85,9 +84,9 @@ def signup():
 @app.route('/profile')
 def profile():
     if current_user.is_authenticated:
-        return redirect(url_for('signin'))
-    else:
         return render_template('profile.html')
+    else:
+        return redirect(url_for('signin'))
 
 
 @app.route('/contact', methods=['GET', 'POST'])
