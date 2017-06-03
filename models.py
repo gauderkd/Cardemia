@@ -1,7 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-from werkzeug.security import generate_password_hash, \
-     check_password_hash
+from flask.ext.bcrypt import generate_password_hash, check_password_hash
 from datetime import datetime
 
 db = SQLAlchemy()
@@ -35,3 +34,4 @@ class Users(db.Model, UserMixin):
     def check_password(self, plaintext):
         if check_password_hash(self.password, plaintext):
             return True
+        return False
