@@ -58,14 +58,14 @@ def signin():
 
     if form.validate_on_submit():
         user = Users.query.filter_by(username=form.username.data).first_or_404()
-        flash(user)
-
-        if user.check_password(form.password.data):
-            login_user(user, remember=True)
-            return redirect(url_for('profile'))
+        if user:
+            if user.check_password(form.password.data):
+                login_user(user, remember=True)
+                return redirect(url_for('profile'))
+            else:
+                return 'check password failed'
         else:
-            return 'check password failed'
-        return 'validate_submit_failed'
+            return 'user doesnt exist'
     return render_template("signin.html", form=form)
 
 
