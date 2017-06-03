@@ -20,9 +20,6 @@ class SignupForm(Form):
     submit = SubmitField("Create account")
 
     def validate(self):
-        if not Form.validate(self):
-            return False
-
         user_mail = Users.query.filter_by(email=self.email.data.lower()).first()
         user_name = Users.query.filter_by(username=self.email.data.lower()).first()
         if user_name:

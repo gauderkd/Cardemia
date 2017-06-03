@@ -80,7 +80,7 @@ def signout():
 def signup():
     form = SignupForm()
 
-    if form.validate_on_submit() and not form.validate():
+    if form.validate_on_submit() and (form.validate() is True):
         newuser = Users(username=form.username.data, password=form.password.data, email=form.email.data)
         db.session.add(newuser)
         db.session.commit()
