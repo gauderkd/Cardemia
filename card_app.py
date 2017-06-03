@@ -76,6 +76,14 @@ def signout():
     return redirect(url_for('main'))
 
 
+@app.route('/profile')
+def profile():
+    if current_user.is_authenticated:
+        return render_template('profile.html')
+    else:
+        return redirect(url_for('signin'))
+
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
@@ -90,14 +98,6 @@ def signup():
 
     else:
         return render_template('signup.html', form=form)
-
-
-@app.route('/profile')
-def profile():
-    if current_user.is_authenticated:
-        return render_template('profile.html')
-    else:
-        return redirect(url_for('signin'))
 
 
 @app.route('/contact', methods=['GET', 'POST'])
