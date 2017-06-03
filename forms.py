@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm as Form
-from wtforms import StringField, TextAreaField, SubmitField, validators, ValidationError, PasswordField
+from wtforms import StringField, TextAreaField, SubmitField, validators, ValidationError, PasswordField, Required
 
 from models import db, Users
 
@@ -19,3 +19,8 @@ class SignupForm(Form):
                                 validators.Email("Please enter your email address.")])
     password = PasswordField('Password', [validators.Required("Please enter a password.")])
     submit = SubmitField("Create account")
+
+
+class loginForm(Form):
+    username = StringField('Username', validators=[Required()])
+    password = PasswordField('Password', validators=[Required()])
