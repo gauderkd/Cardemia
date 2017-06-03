@@ -18,7 +18,7 @@ SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostnam
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 
-from models import db, User
+from models import db, Users
 db.init_app(app)
 
 
@@ -46,7 +46,7 @@ def signup():
         if form.validate() == False:
             return 'form validate = false'
         else:
-            newuser = User(form.username.data, form.email.data, form.password.data)
+            newuser = Users(form.username.data, form.email.data, form.password.data)
             db.session.add(newuser)
             db.session.commit()
 
@@ -62,7 +62,7 @@ def profile():
     if 'email' not in session:
         return redirect(url_for('signin'))
 
-    user = User.query.filter_by(email=session['email']).first()
+    user = Users.query.filter_by(email=session['email']).first()
 
     if user is None:
         return redirect(url_for('signin'))
