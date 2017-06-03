@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, session
+from flask import Flask, render_template, request, flash, session, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
 
@@ -64,10 +64,7 @@ def cards():
 
 @app.route('/signin')
 def signin():
-    if db.session.query("1").from_statement("SELECT 1").all():
-        return 'It works.'
-    else:
-        return 'Something is broken.'
+    return render_template("signin.html")
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -84,10 +81,23 @@ def signup():
 
             session['email'] = newuser.email
 
-            return 'Signed up!'
+            return redirect(url_for('profile'))
 
     elif request.method == 'GET':
         return render_template('signup.html', form=form)
+
+
+@app.route('/profile')
+def profile():
+    if 'email' not in session:
+        return redirect(url_for('signin'))
+
+    user = User.query.filter_by(email=session['email']).first()
+
+    if user is None:
+        return redirect(url_for('signin'))
+    else:
+        return render_template('profile.html')
 
 
 @app.route('/contact', methods=['GET', 'POST'])
