@@ -41,18 +41,15 @@ def signin():
 def signup():
     form = SignupForm()
 
-    if request.method == 'POST':
-        if form.validate() == False:
-            return render_template('signup.html', form=form)
-        else:
-            newuser = Users(username=form.username.data, password=form.password.data, email=form.email.data)
-            db.session.add(newuser)
-            db.session.commit()
+    if form.validate_on_submit():
+        newuser = Users(username=form.username.data, password=form.password.data, email=form.email.data)
+        db.session.add(newuser)
+        db.session.commit()
+        session['email'] = newuser.email
 
-            session['email'] = newuser.email
-            return redirect(url_for('profile'))
+        return redirect(url_for('profile'))
 
-    elif request.method == 'GET':
+    else:
         return render_template('signup.html', form=form)
 
 
