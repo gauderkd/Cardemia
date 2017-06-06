@@ -2,6 +2,12 @@
 {%  block content %}
     <p><a class="btn btn-lg btn-success" href="{{ url_for('createcard') }}" role="button">Make a new card</a>
     {% for card in cards %}
-        <p>{{ card.title }}</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-1">{{ card.title }}</div>
+                <div class="col-md-1">{{ card.year }}</div>
+                <div class="col-md-1">{{ card.authors }}</div>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}
