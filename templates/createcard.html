@@ -1,0 +1,39 @@
+{%  extends "layout.html" %}
+{%  block content %}
+    <div class="jumbotron">
+        <h1>Create a Card</h1>
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+            </div>
+            {% endfor %}
+
+            {% for message in form.title.errors %}
+            <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+            {% for message in form.year.errors %}
+            <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+            {% for message in form.authors.errors %}
+            <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+
+            <form class="form-signin" action="{{ url_for('signup') }}" method=post>
+                {{ form.csrf_token }}
+                {{ form.name }}
+
+                {{ form.title.label }}
+                {{ form.title(class_='form-control') }}
+
+                {{ form.year.label }}
+                {{ form.year(class_='form-control') }}
+
+                {{ form.authors.label }}
+                {{ form.authors(class_='form-control') }}
+
+                {{ form.submit(class_='btn btn-primary') }}
+            </form>
+    </div>
+
+{% endblock %}

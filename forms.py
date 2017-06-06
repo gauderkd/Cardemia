@@ -24,3 +24,9 @@ class LoginForm(Form):
     username = StringField('Username', [validators.DataRequired("Please enter your username.")])
     password = PasswordField('Password', [validators.DataRequired("Please enter your password.")])
     submit = SubmitField("Sign In")
+
+class CardCreateForm(Form):
+    title = StringField('Title', [validators.DataRequired("Please enter the title.")])
+    year = StringField('Year', [validators.DataRequired("Please enter the publish year.")])
+    authors = StringField('Authors', [validators.DataRequired("Please enter at least one author.")])
+    submit = SubmitField("Create")

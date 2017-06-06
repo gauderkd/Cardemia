@@ -47,7 +47,8 @@ class Card(db.Model):
     registered_on = db.Column(db.DateTime)
     last_edited = db.Column(db.DateTime)
 
-    def __init__(self, title, year, authors, keywords="", card_text=""):
+    def __init__(self, owner, title, year, authors, keywords="", card_text=""):
+        self.owner = owner
         self.title = title
         self.year = year
         self.authors = authors

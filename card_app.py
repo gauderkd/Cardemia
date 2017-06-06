@@ -20,7 +20,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-from models import db, Users
+from models import db, Users, Card
 db.init_app(app)
 
 # Login Manager
@@ -121,3 +121,17 @@ def contact():
     elif request.method == 'GET':
         return render_template('contact.html', form=form)
     # request determines if current http method is get or post
+
+@app.route('/createcard', methods=["GET", "POST"])
+def createcard():
+    form = LoginForm()
+    if current_user.is_authenticated:
+        if form.validate_on_submit():
+            newcard = Card(owner=current_user, title=form.title.data, year=form.year.data, authors=form.authors.data)
+            db.session.add(newcard)
+            db.session.commit()
+            flash('card successfully created!')
+    else:
+        flash('Sorry, you have to make an account first.')
+
+    return render_template("createcard.html", form=form)
