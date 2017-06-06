@@ -27,7 +27,7 @@ db = SQLAlchemy(app)
 
 class Users(db.Model, UserMixin):
     __tablename__ = "users"
-    id = db.Column('user_id', db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column('username', db.String, unique=True, index=True)
     password = db.Column('password', db.String)
     email = db.Column('email', db.String, unique=True, index=True)
@@ -51,7 +51,7 @@ class Users(db.Model, UserMixin):
 
 class Card(db.Model):
     __tablename__ = 'cards'
-    id = db.Column('card_id', db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
 
     owner = db.Column(db.String)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
