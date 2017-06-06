@@ -91,13 +91,12 @@ def signup():
             return redirect(url_for('profile'))
 
         elif mail_check is None and user_check is not None:
-            return 'username taken'
+            flash('Username is taken!')
         elif mail_check is not None and user_check is None:
-            return 'email taken'
+            flash('Email is already registered!')
         else:
-            return 'some other error'
-    else:
-        return render_template('signup.html', form=form)
+            flash('Sorry, an error has occurred')
+    return render_template('signup.html', form=form)
 
 
 @app.route('/profile')
