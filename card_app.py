@@ -45,8 +45,12 @@ def main():
 
 @app.route('/cards')
 def cards():
-    user_cards = Card.query.filter(Card.owner == current_user)
-    return render_template("cards.html", cards=user_cards)
+    if current_user.is_authenticated:
+        user_cards = Card.query.filter(Card.owner == current_user)
+        return render_template("cards.html", cards=user_cards)
+    else:
+        flash('Please sign in to make cards')
+        return redirect(url_for('signin'))
 
 
 @app.route('/signin', methods=["GET", "POST"])

@@ -17,12 +17,12 @@
         <div class="container-fluid">
             <div class="header">
                 <nav>
-                    <ul class="nav nav-pills pull-right">
-                        <li role="presentation" id="cardsPill"><a href="{{ url_for('cards') }}">Cards</a>
-                        </li>
+                    <ul class="nav nav-pills pull-right"></ul>
                         <li role="presentation" id="homePill"><a href="{{ url_for('main') }}">Home</a>
                         </li>
                         {% if current_user.is_authenticated %}
+                            <li role="presentation" id="cardsPill"><a href="{{ url_for('cards') }}">Cards</a>
+                            </li>
                             <li role="presentation" id="profilePill"><a href="{{ url_for('profile') }}">Profile</a>
                             </li>
                             <li role="presentation" id="signOutPill"><a href="{{ url_for('signout') }}">Sign Out</a>
