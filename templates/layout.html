@@ -22,10 +22,17 @@
                         </li>
                         <li role="presentation" id="homePill"><a href="{{ url_for('main') }}">Home</a>
                         </li>
-                        <li role="presentation" id="signInPill"><a href="{{ url_for('signin') }}">Sign In</a>
-                        </li>
-                        <li role="presentation" id="signUpPill"><a href="{{ url_for('signup') }}">Sign Up</a>
-                        </li>
+                        {% if not session.logged_in %}
+                            <li role="presentation" id="signInPill"><a href="{{ url_for('signin') }}">Sign In</a>
+                            </li>
+                            <li role="presentation" id="signUpPill"><a href="{{ url_for('signup') }}">Sign Up</a>
+                            </li>
+                        {% else %}
+                            <li role="presentation" id="profilePill"><a href="{{ url_for('profile') }}">Sign In</a>
+                            </li>
+                            <li role="presentation" id="signOutPill"><a href="{{ url_for('signout') }}">Sign Out</a>
+                            </li>
+                        {% endif %}
                         <li role="presentation" id="contactPill"><a href="{{ url_for('contact') }}">Contact</a>
                         </li>
                     </ul>

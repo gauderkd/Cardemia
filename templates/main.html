@@ -9,7 +9,11 @@
         <div class="page-header text-center">
             <h1>Cardemia</h1>
             <p class="lead">A Cue-Card based Research Notes App</p>
-            <p><a class="btn btn-lg btn-success" href="{{ url_for('signup') }}" role="button">Sign up today</a>
+            {% if not session.logged_in %}
+                <p><a class="btn btn-lg btn-success" href="{{ url_for('signup') }}" role="button">Sign up today</a>
+                {% else %}
+                <p><a class="btn btn-lg btn-success" href="{{ url_for('profile') }}" role="button">Go to Profile</a>
+                {% endif %}
             </p>
         </div>
 
