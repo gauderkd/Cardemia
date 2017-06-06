@@ -28,43 +28,29 @@ class Card(db.Model):
 
     owner = db.Column(db.String)
 
-    title = db.Column(db.String)
-    year = db.Column(db.String)
-    authors = db.Column(db.String)
+    title = db.Column(db.String(300))
+    year = db.Column(db.String(10))
+    authors = db.Column(db.String(300))
 
-    keywords = db.Column(db.String)
+    keywords = db.Column(db.String(50))
 
-    sec_1 = db.Column(db.String)
-    sec_2 = db.Column(db.String)
-    sec_3 = db.Column(db.String)
-    sec_4 = db.Column(db.String)
-    sec_5 = db.Column(db.String)
-    sec_6 = db.Column(db.String)
-    sec_7 = db.Column(db.String)
-    sec_8 = db.Column(db.String)
-    sec_9 = db.Column(db.String)
-    sec_10 = db.Column(db.String)
+    card_text = db.Column(db.Text)
 
     registered_on = db.Column(db.DateTime)
     last_edited = db.Column(db.DateTime)
 
-    def __init__(self, title, year, authors, keywords="", sec_1="", sec_2="", sec_3="", sec_4="",
-                 sec_5="", sec_6="",sec_7="", sec_8="", sec_9="", sec_10=""):
+    def __init__(self, owner, title, year, authors, keywords="", card_text=""):
+        self.owner = owner
         self.title = title
         self.year = year
         self.authors = authors
         self.keywords = keywords
-        self.sec_1 = sec_1
-        self.sec_2 = sec_2
-        self.sec_3 = sec_3
-        self.sec_4 = sec_4
-        self.sec_5 = sec_5
-        self.sec_6 = sec_6
-        self.sec_7 = sec_7
-        self.sec_8 = sec_8
-        self.sec_9 = sec_9
-        self.sec_10 = sec_10
+        self.card_text = card_text
         self.registered_on = datetime.utcnow()
+        self.last_edited = datetime.utcnow()
+
+    def check_owner(self):
+        return self.owner
 
 
 
