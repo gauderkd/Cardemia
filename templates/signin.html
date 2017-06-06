@@ -9,6 +9,14 @@
             {{ message }}
             </div>
         {% endfor %}
+
+        {% for message in form.username.errors %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in form.password.errors %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
         <form class="form-signin" action="{{ url_for('signin') }}" method=post>
         {{ form.csrf_token }}
         {{ form.name }}

@@ -11,15 +11,15 @@
           <h1>Sign up for Cards Today!</h1>
 
   {% for message in form.username.errors %}
-    <div class="flash">{{ message }}</div>
+    <div class="alert alert-danger">{{ message }}</div>
   {% endfor %}
 
   {% for message in form.email.errors %}
-    <div class="flash">{{ message }}</div>
+    <div class="alert alert-danger">{{ message }}</div>
   {% endfor %}
 
   {% for message in form.password.errors %}
-    <div class="flash">{{ message }}</div>
+    <div class="alert alert-danger">{{ message }}</div>
   {% endfor %}
 
         {% for message in get_flashed_messages() %}
