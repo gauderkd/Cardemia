@@ -131,6 +131,7 @@ def createcard():
             db.session.add(newcard)
             db.session.commit()
             flash('card successfully created!')
+            return redirect(url_for('createcard'))
     else:
         flash('Sorry, you have to make an account first.')
 
