@@ -104,8 +104,10 @@ def signup():
 def profile():
     if current_user.is_authenticated:
         user_cards = Card.query.filter(Card.owner == current_user)
-
-        return render_template('profile.html', cards=user_cards, card_num=len(user_cards))
+        card_count = 0
+        for i in user_cards:
+            card_count += 1
+        return render_template('profile.html', cards=user_cards, card_num=card_count)
     else:
         return redirect(url_for('signin'))
 
