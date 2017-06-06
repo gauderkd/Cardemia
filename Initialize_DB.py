@@ -5,6 +5,8 @@ from flask_login import UserMixin
 from passlib.hash import argon2
 from datetime import datetime
 
+# from card_app import *
+# db.create_all()
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -52,7 +54,7 @@ class Card(db.Model):
     id = db.Column('card_id', db.Integer, primary_key=True)
 
     owner = db.Column(db.String)
-    owner_id = db.Column(db.Integer, db.ForeignKey('user_id'))
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     title = db.Column(db.String(300))
     year = db.Column(db.String(10))
