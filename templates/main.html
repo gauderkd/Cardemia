@@ -8,7 +8,7 @@
 {%  block content %}
         <div class="page-header text-center">
             <h1>Cardemia</h1>
-            <p class="lead">A Cue-Card based Research Notes App</p>
+            <p class="lead">A Card based Research Notes App</p>
             {% if current_user.is_authenticated %}
                 <p><a class="btn btn-lg btn-success" href="{{ url_for('profile') }}" role="button">Go to Profile</a>
                 {% else %}
@@ -32,7 +32,7 @@
 
             <div class="col-lg-4">
                 <h4>Organize ideas</h4>
-                <p>Organize cards into projects to help lay out the logic of your research!</p>
+                <p>Organize cards into projects to help lay out the logic of your research! (coming soon)</p>
             </div>
         </div>
 {% endblock %}
