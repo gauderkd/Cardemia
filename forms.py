@@ -3,6 +3,7 @@ from wtforms import StringField, TextAreaField, SubmitField, validators, Validat
 
 from models import db, Users
 
+
 class ContactForm(Form):
     # Basically, this is instead of putting input forms in HTML
     name = StringField("name",  [validators.DataRequired('Please enter your name.')])
@@ -24,6 +25,7 @@ class LoginForm(Form):
     username = StringField('Username', [validators.DataRequired("Please enter your username.")])
     password = PasswordField('Password', [validators.DataRequired("Please enter your password.")])
     submit = SubmitField("Sign In")
+
 
 class CardCreateForm(Form):
     title = StringField('Title', [validators.DataRequired("Please enter the title.")])

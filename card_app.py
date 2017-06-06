@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, session, url_for, redirect
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
-from forms import ContactForm, SignupForm, LoginForm
+from forms import ContactForm, SignupForm, LoginForm, CardCreateForm
 
 
 # Initialize Flask app
@@ -124,7 +124,7 @@ def contact():
 
 @app.route('/createcard', methods=["GET", "POST"])
 def createcard():
-    form = LoginForm()
+    form = CardCreateForm()
     if current_user.is_authenticated:
         if form.validate_on_submit():
             newcard = Card(owner=current_user, title=form.title.data, year=form.year.data, authors=form.authors.data)
