@@ -3,6 +3,12 @@
 
     <div class="container-fluid">
         <h1>Sign in</h1>
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+            </div>
+        {% endfor %}
         <form class="form-signin" action="{{ url_for('signin') }}" method=post>
         {{ form.csrf_token }}
         {{ form.name }}

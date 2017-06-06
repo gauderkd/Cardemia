@@ -90,9 +90,9 @@ def signup():
             login_user(newuser)
             return redirect(url_for('profile'))
 
-        elif mail_check is None and user_check is not None:
+        elif user_check is not None:
             flash('Username is taken!')
-        elif mail_check is not None and user_check is None:
+        elif mail_check is not None:
             flash('Email is already registered!')
         else:
             flash('Sorry, an error has occurred')
