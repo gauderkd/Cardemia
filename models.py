@@ -8,10 +8,10 @@ db = SQLAlchemy()
 
 class Users(db.Model, UserMixin):
     __tablename__ = "users"
-    id = db.Column('user_id', db.Integer, primary_key=True)
-    username = db.Column('username', db.String, unique=True, index=True)
-    password = db.Column('password', db.String)
-    email = db.Column('email', db.String, unique=True, index=True)
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column('username', db.String(100), unique=True, index=True)
+    password = db.Column('password', db.String(100))
+    email = db.Column('email', db.String(255), unique=True, index=True)
     registered_on = db.Column('registered_on', db.DateTime)
     cards = db.relationship('Cards', backref='users', lazy='dynamic')
 
@@ -32,10 +32,10 @@ class Users(db.Model, UserMixin):
 
 class Card(db.Model):
     __tablename__ = 'cards'
-    id = db.Column('card_id', db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
 
-    owner = db.Column(db.String)
-    owner_id = db.Column(db.Integer, db.ForeignKey('user_id'))
+    owner = db.Column(db.String(100))
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     title = db.Column(db.String(300))
     year = db.Column(db.String(10))
@@ -61,3 +61,4 @@ class Card(db.Model):
 
     def check_owner(self):
         return self.owner
+
