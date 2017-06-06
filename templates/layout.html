@@ -7,29 +7,31 @@
     <!-- Dependencies -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="header">
-            <nav>
-                <ul class="nav nav-pills pull-right">
-                    <li role="presentation" id="cardsPill"><a href="{{ url_for('cards') }}">Cards</a>
-                    </li>
-                    <li role="presentation" id="homePill"><a href="{{ url_for('main') }}">Home</a>
-                    </li>
-                    <li role="presentation" id="signInPill"><a href="{{ url_for('signin') }}">Sign In</a>
-                    </li>
-                    <li role="presentation" id="signUpPill"><a href="{{ url_for('signup') }}">Sign Up</a>
-                    </li>
-                    <li role="presentation" id="contactPill"><a href="{{ url_for('contact') }}">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-            <h3 class="text-muted">Cardemia</h3>
+    <div class="container">
+        <div class="container-fluid">
+            <div class="header">
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+                        <li role="presentation" id="cardsPill"><a href="{{ url_for('cards') }}">Cards</a>
+                        </li>
+                        <li role="presentation" id="homePill"><a href="{{ url_for('main') }}">Home</a>
+                        </li>
+                        <li role="presentation" id="signInPill"><a href="{{ url_for('signin') }}">Sign In</a>
+                        </li>
+                        <li role="presentation" id="signUpPill"><a href="{{ url_for('signup') }}">Sign Up</a>
+                        </li>
+                        <li role="presentation" id="contactPill"><a href="{{ url_for('contact') }}">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+                <h3 class="text-muted">Cardemia</h3>
+            </div>
         </div>
 
     {% block content %}
