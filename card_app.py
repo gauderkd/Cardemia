@@ -45,7 +45,8 @@ def main():
 
 @app.route('/cards')
 def cards():
-    return render_template("cards.html")
+    user_cards = Card.query.filter(Card.owner == current_user)
+    return render_template("cards.html", cards=user_cards)
 
 
 @app.route('/signin', methods=["GET", "POST"])

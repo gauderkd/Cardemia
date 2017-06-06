@@ -1,4 +1,7 @@
 {%  extends "layout.html" %}
 {%  block content %}
     <p><a class="btn btn-lg btn-success" href="{{ url_for('createcard') }}" role="button">Make a new card</a>
+    {% for card in cards %}
+        <p>{{ card.title }}</p>
+    {% endfor %}
 {% endblock %}
