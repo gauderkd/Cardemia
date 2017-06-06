@@ -2,18 +2,10 @@
 {%  block content %}
 
     <div class="container-fluid">
-
-
         <h1>Sign in</h1>
-
-        {% for message in form.username.errors %}
-        <div class="flash">{{ message }}</div>
-        {% endfor %}
-
-        {% for message in form.password.errors %}
-            <div class="flash">{{ message }}</div>
-        {% endfor %}
-
+         {% if error %}
+             <p class=error><strong>Error:</strong> {{ error }}
+         {% endif %}
         <form class="form-signin" action="{{ url_for('signin') }}" method=post>
         {{ form.csrf_token }}
         {{ form.name }}
