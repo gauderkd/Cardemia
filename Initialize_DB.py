@@ -32,7 +32,7 @@ class Users(db.Model, UserMixin):
     password = db.Column('password', db.String(100))
     email = db.Column('email', db.String(255), unique=True, index=True)
     registered_on = db.Column('registered_on', db.DateTime)
-    cards = db.relationship('cards', backref='owner', lazy='dynamic')
+    cards = db.relationship('Card', backref='owner', lazy='dynamic')
 
     def __init__(self, username, password, email):
         self.username = username
