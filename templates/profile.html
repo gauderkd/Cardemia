@@ -1,7 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
   <div class="jumbo">
-    <h2>Profile</h2>
-    <h3>This is your profile page</h3>
+      {% if current_user.is_authenticated %}
+        <h2>{{ current_user.username }}</h2>
+        <h3>This is your profile page</h3>
+      {% else %}
+        <a href="{{ url_for('signin') }}">Please log in to view</a>
+      {% endif %}
   </div>
 {% endblock %}
