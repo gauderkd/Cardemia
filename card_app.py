@@ -103,7 +103,9 @@ def signup():
 @app.route('/profile')
 def profile():
     if current_user.is_authenticated:
-        return render_template('profile.html')
+        user_cards = Card.query.filter(Card.owner == current_user)
+
+        return render_template('profile.html', cards=user_cards, card_num=len(user_cards))
     else:
         return redirect(url_for('signin'))
 
