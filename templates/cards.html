@@ -1,13 +1,26 @@
 {%  extends "layout.html" %}
 {%  block content %}
     <p><a class="btn btn-lg btn-success" href="{{ url_for('createcard') }}" role="button">Make a new card</a>
-    {% for card in cards %}
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-6">{{ card.title }}</div>
-                <div class="col-xs-1">{{ card.year }}</div>
-                <div class="col-xs-4">{{ card.authors }}</div>
-            </div>
-        </div>
-    {% endfor %}
+
+
+    <div class="container-fluid">
+        <table class="table table-striped table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Authors</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for card in cards %}
+                <tr>
+                    <td>{{ card.title }}</td>
+                    <td>{{ card.year }}</td>
+                    <td>{{ card.authors }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
