@@ -51,7 +51,8 @@ def cards():
 @app.route('/signin', methods=["GET", "POST"])
 def signin():
     if current_user.is_authenticated:
-        return 'You are already logged in'
+        flash('You are already logged in!')
+        return redirect(url_for('main'))
 
     form = LoginForm()
 
@@ -59,14 +60,11 @@ def signin():
         user = Users.query.filter_by(username=form.username.data).first()
         if user is None:
             flash('username doesnt exist')
-            return render_template("signin.html", form=form)
         elif user and user.check_password(form.password.data):
             login_user(user, remember=True)
             return redirect(url_for('profile'))
         else:
             flash('password incorrect')
-            return render_template("signin.html", form=form)
-
     return render_template("signin.html", form=form)
 
 
