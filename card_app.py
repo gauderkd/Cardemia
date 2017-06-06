@@ -80,20 +80,22 @@ def signup():
     form = SignupForm()
 
     if form.validate_on_submit():
-        if form.validate() is True:
+        mail_check = Users.query.filter_by(email=form.email.data.lower()).first()
+        user_check = Users.query.filter_by(username=form.username.data).first()
+
+        if mail_check is None and user_check is None:
             newuser = Users(username=form.username.data, password=form.password.data, email=form.email.data)
             db.session.add(newuser)
             db.session.commit()
             login_user(newuser)
-
             return redirect(url_for('profile'))
-        elif form.validate() is 'error_username':
+
+        elif mail_check is None and user_check is not None:
             return 'username taken'
-        elif form.validate() is 'error email':
+        elif mail_check is not None and user_check is None:
             return 'email taken'
         else:
             return 'some other error'
-
     else:
         return render_template('signup.html', form=form)
 
