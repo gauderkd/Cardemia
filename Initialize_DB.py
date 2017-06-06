@@ -32,7 +32,7 @@ class Users(db.Model, UserMixin):
     password = db.Column('password', db.String(100))
     email = db.Column('email', db.String(255), unique=True, index=True)
     registered_on = db.Column('registered_on', db.DateTime)
-    cards = db.relationship('cards', backref='users', lazy='dynamic')
+    cards = db.relationship('cards', backref='owner', lazy='dynamic')
 
     def __init__(self, username, password, email):
         self.username = username
@@ -66,7 +66,6 @@ class Card(db.Model):
     registered_on = db.Column(db.DateTime)
     last_edited = db.Column(db.DateTime)
 
-
     def __init__(self, title, year, authors, keywords="", card_text=""):
         self.title = title
         self.year = year
@@ -75,6 +74,8 @@ class Card(db.Model):
         self.card_text = card_text
         self.registered_on = datetime.utcnow()
         self.last_edited = datetime.utcnow()
+
+
 @app.route('/')
 def hello_world():
     return render_template("main.html")
