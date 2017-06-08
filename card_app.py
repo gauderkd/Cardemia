@@ -140,6 +140,7 @@ def viewcard(variable):
                 this_card.edit_text(form.text.data)
                 db.session.commit()
             form.text.data = this_card.card_text
+            flash('Text Saved!')
             return render_template("viewcard.html", card=this_card, form=form)
         except:
             flash('Sorry, something went wrong')
