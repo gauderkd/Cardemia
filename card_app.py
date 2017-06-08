@@ -151,9 +151,6 @@ def viewcard(variable):
     if current_user.is_authenticated:
         form = ViewEditCard()
         this_card = Card.query.filter(Card.id == variable, Card.owner == current_user).first()
-        if request.method == 'POST':
-            if this_card.card_text() is not form.text.data:
-                this_card.edit_text(form.text.data)
         return render_template("viewcard.html", card=this_card, form=form)
     else:
         flash('Please sign in to make and view cards')
