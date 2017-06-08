@@ -6,15 +6,23 @@ from forms import *
 
 # Initialize Flask app
 app = Flask(__name__)
-SQLALCHEMY_DATABASE_URI =  "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-        username="dragnerz",
-        password="cardemia_db",
-        hostname="dragnerz.mysql.pythonanywhere-services.com",
-        databasename="dragnerz$carddb",
-    )
+
+app.secret_key = 'key to the heart'
+
+# Connect to database 'carddb'
+SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+    username="dragnerz",
+    password="cardemia_db",
+    hostname="dragnerz.mysql.pythonanywhere-services.com",
+    databasename="dragnerz$carddb",
+)
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+from models import db, Users, Card
+db.init_app(app)
+
 # Login Manager
 login_manager = LoginManager()
 login_manager.init_app(app)
