@@ -150,12 +150,16 @@ def createcard():
 def viewcard(variable):
     if current_user.is_authenticated:
         form = ViewEditCard()
-        this_card = Card.query.filter(Card.id == variable, Card.owner == current_user).first()
-        if request.method == 'POST':
-            this_card.edit_text(form.text.data)
-            db.session.commit()
-        form.text.data = this_card.card_text
-        return render_template("viewcard.html", card=this_card, form=form)
+        try:
+            this_card = Card.query.filter(Card.id == variable, Card.owner == current_user).first()
+            if request.method == 'POST':
+                this_card.edit_text(form.text.data)
+                db.session.commit()
+            form.text.data = this_card.card_text
+            return render_template("viewcard.html", card=this_card, form=form)
+        except:
+            flash('Sorry, something went wrong')
+            return redirect(url_for('main'))
     else:
         flash('Please sign in to make and view cards')
         return redirect(url_for('signin'))
