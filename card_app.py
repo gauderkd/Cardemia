@@ -7,7 +7,9 @@ from forms import *
 # Initialize Flask app
 app = Flask(__name__)
 
-
+app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Login Manager
 login_manager = LoginManager()
 login_manager.init_app(app)
