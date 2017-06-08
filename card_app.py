@@ -152,7 +152,7 @@ def viewcard(variable):
         form = ViewEditCard()
         this_card = Card.query.filter(Card.id == variable, Card.owner == current_user).first()
         if request.method == 'POST':
-            this_card.edit_text("TEST STRING")
+            this_card.edit_text(form.text.data)
             db.session.commit()
         return render_template("viewcard.html", card=this_card, form=form)
     else:
