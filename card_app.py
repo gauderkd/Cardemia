@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, flash, session, url_for, redi
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
 from forms import *
+import config
 
 
 # Initialize Flask app
