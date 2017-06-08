@@ -1,5 +1,3 @@
-import os
-
 from flask import Flask, render_template, request, flash, session, url_for, redirect
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
@@ -8,7 +6,13 @@ from forms import *
 
 # Initialize Flask app
 app = Flask(__name__)
-app.config.from_object(os.environ['APP_SETTINGS'])
+SQLALCHEMY_DATABASE_URI =  "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+        username="dragnerz",
+        password="cardemia_db",
+        hostname="dragnerz.mysql.pythonanywhere-services.com",
+        databasename="dragnerz$carddb",
+    )
+app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Login Manager
