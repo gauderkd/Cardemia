@@ -18,16 +18,16 @@
             <div class="alert alert-danger">{{ message }}</div>
         {% endfor %}
         <form class="form-signin" action="{{ url_for('signin') }}" method=post>
-        {{ form.csrf_token }}
-        {{ form.name }}
+            {{ form.csrf_token }}
+            {{ form.name }}
 
-        {{ form.username.label }}
-        {{ form.username(class_='form-control') }}
+            {{ form.username.label }}
+            {{ form.username(class_='form-control') }}
 
-        {{ form.password.label }}
-        {{ form.password(class_='form-control') }}
+            {{ form.password.label }}
+            {{ form.password(class_='form-control') }}
 
-        {{ form.submit(class_='btn btn-primary') }}
+            {{ form.submit(class_='btn btn-primary') }}
         </form>
         </div>
 

@@ -56,3 +56,6 @@ class Card(db.Model):
         self.card_text = card_text
         self.registered_on = datetime.utcnow()
         self.last_edited = datetime.utcnow()
+
+    def edit_text(self, string):
+        self.card_text = string

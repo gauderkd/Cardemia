@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, session, url_for, redirect
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
-from forms import ContactForm, SignupForm, LoginForm, CardCreateForm
+from forms import *
 
 
 # Initialize Flask app
@@ -146,12 +146,15 @@ def createcard():
 
     return render_template("createcard.html", form=form)
 
-@app.route('/viewcard/<path:variable>', methods=['GET'])
+@app.route('/viewcard/<path:variable>', methods=['GET', "POST"])
 def viewcard(variable):
     if current_user.is_authenticated:
+        form = ViewEditCard()
         try:
             this_card = Card.query.filter(Card.id == variable, Card.owner == current_user)
-            return render_template("viewcard.html", cards=this_card)
+            if request.method == 'POST' and this_card[0].card_text() is not form.text.data:
+                this_card[0].edit_text(form.text.data)
+            return render_template("viewcard.html", cards=this_card, form=form)
         except:
             flash('Sorry, something went wrong')
             return redirect(url_for('main'))

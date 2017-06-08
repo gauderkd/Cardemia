@@ -32,3 +32,8 @@ class CardCreateForm(Form):
     year = StringField('Year', [validators.DataRequired("Please enter the publish year.")])
     authors = StringField('Authors', [validators.DataRequired("Please enter at least one author.")])
     submit = SubmitField("Create")
+
+
+class ViewEditCard(Form):
+    text = TextAreaField('Text')
+    submit = SubmitField("Save")
