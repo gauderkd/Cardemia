@@ -1,8 +1,10 @@
 {%  extends "layout.html" %}
 {%  block content %}
     <div class="jumbotron">
+    {% for card in cards %}
         <p>{{ card.title }}</p>
         <p>{{ card.year }}</p>
         <p>{{ card.authors }}</p>
+    {% endfor %}
     </div>
 {% endblock %}
