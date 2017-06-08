@@ -145,3 +145,16 @@ def createcard():
         flash('Sorry, you have to make an account first.')
 
     return render_template("createcard.html", form=form)
+
+@app.route('/viewcard/<path:variable>', methods=['GET'])
+def viewcard(variable):
+    if current_user.is_authenticated:
+        try:
+            this_card = Card.query.filter(Card.id == current_user, id == variable)
+            return render_template("viewcard.html", card=this_card)
+        except:
+            flash('Sorry, something went wrong')
+            return redirect(url_for('main'))
+    else:
+        flash('Please sign in to make and view cards')
+        return redirect(url_for('signin'))
