@@ -154,6 +154,7 @@ def viewcard(variable):
         if request.method == 'POST':
             this_card.edit_text(form.text.data)
             db.session.commit()
+        form.text.data = this_card.card_text
         return render_template("viewcard.html", card=this_card, form=form)
     else:
         flash('Please sign in to make and view cards')
