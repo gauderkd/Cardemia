@@ -10,7 +10,7 @@
         <p>{{ card.title }}</p>
         <p>{{ card.year }}</p>
         <p>{{ card.authors }}</p>
-        <form class="form-signin" action="{{ url_for('viewcard') }}" method=post>
+        <form class="form-signin" action="{{ url_for('viewcard', variable=card.id) }}" method=post>
             {{ form.csrf_token }}
             {{ form.name }}
 
