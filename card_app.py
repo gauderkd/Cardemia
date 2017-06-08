@@ -1,14 +1,14 @@
+import os
+
 from flask import Flask, render_template, request, flash, session, url_for, redirect
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
 from forms import *
-import config
 
 
 # Initialize Flask app
 app = Flask(__name__)
-
-app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+app.config.from_object(os.environ['APP_SETTINGS'])
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Login Manager
