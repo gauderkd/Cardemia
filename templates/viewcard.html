@@ -7,7 +7,6 @@
         {{ message }}
         </div>
     {% endfor %}
-    {% for card in cards %}
         <p>{{ card.title }}</p>
         <p>{{ card.year }}</p>
         <p>{{ card.authors }}</p>
@@ -20,6 +19,5 @@
 
             {{ form.submit(class_='btn btn-primary') }}
         </form>
-    {% endfor %}
     </div>
 {% endblock %}
