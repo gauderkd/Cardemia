@@ -150,7 +150,7 @@ def createcard():
 def viewcard(variable):
     if current_user.is_authenticated:
         try:
-            this_card = Card.query.filter(Card.id == variable)
+            this_card = Card.query.filter(Card.id == variable, Card.owner == current_user)
             return render_template("viewcard.html", cards=this_card)
         except:
             flash('Sorry, something went wrong')
